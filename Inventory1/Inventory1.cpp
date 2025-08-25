@@ -12,17 +12,49 @@ int main()
 {
     cout << "Hello World!\n";
     int choice = 0;
+    string name = "";
+    int price = 0;
 
-    Inventory<Item*> inven(-1);
+    cout << "인벤토리의 크기를 결정하세요" << endl;
+    cin >> choice;
+    Inventory<Item*> inven(choice);
+    cout << "인벤토리의 크기 : " << inven.GetCapacity() << endl;
+    while (choice != 5)
+    {
+        cout << "번호를 입력하세요" << endl;
+        cout << "1. 아이템 추가 2. 아이템 제거 3. 아이템 출력 4. 인벤토리 정렬 5. 종료" << endl;
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            cout << "아이템의 이름과 가격을 입력하세요" << endl;
+            cin >> name;
+            cin >> price;
+            inven.AddItem(new Item(name, price));
+            cout << "현재 아이템 개수: " << inven.GetSize() << endl;
+            break;
+        case 2:
+            cout << "마지막 아이템을 제거합니다" << endl;
+            inven.RemoveLastItem();
+            cout << "현재 아이템 개수: " << inven.GetSize() << endl;
+            break;
+        case 3:
+            inven.PrintAllItems();
+            break;
+        case 4:
+            cout << "인벤토리를 정렬합니다" << endl;
+            inven.SortItems();
+            break;
+        case 5:
+            cout << "종료합니다" << endl;
+            break;
+        default:
+            
+            break;
+        }
 
-    cout << inven.GetCapacity() << endl;
-    inven.AddItem(new Item("gold", 5000));
-    inven.AddItem(new Item("potion", 50));
-    inven.AddItem(new Item("feather", 5));
-    inven.RemoveLastItem();
-    inven.AddItem(new Item("wead", 1));
-    inven.SortItems();
+    }
 
-    cout << "현재 아이템 개수: " << inven.GetSize() << endl;
-    inven.PrintAllItems();
+
+
 }

@@ -16,7 +16,11 @@ private:
 public:
 	Inventory(int capacity = 10) : capacity_(capacity)
 	{
-		if (capacity < 0)capacity_ = 1;
+		if (capacity < 0)
+		{
+			capacity_ = 1;
+			cout << "올바르지 않은 크기입니다. 1로 조정됩니다." << endl;
+		}
 		size_ = 0;
 		pItems_ = new T[capacity_];
 	}
